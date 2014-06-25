@@ -1,6 +1,6 @@
-//¸ê°T¨t  F74009038 ÅU³Í¤ª
-//¥ÑURL¤¤Åª¤JJSON®æ¦¡ªº¸ê®Æ¦s¤JJSON Array¤¤¡A«Å§i¹ïÀ³¼Æ¶qªºStrnig©MInteger Array¦s¤J±qJSON array¤¤
-//ªºJSON Object¨ú¥X·Q­nªº¸ê®Æ¡A¦b¥Îloop¥h¤ñ¹ïString(­Y¬OInteger«hÂà¦¨String¥h¤ñ¹ï)
+//è³‡è¨Šç³»  F74009038 é¡§å‡±äº‘
+//ç”±URLä¸­è®€å…¥JSONæ ¼å¼çš„è³‡æ–™å­˜å…¥JSON Arrayä¸­ï¼Œå®£å‘Šå°æ‡‰æ•¸é‡çš„Strnigå’ŒInteger Arrayå­˜å…¥å¾JSON arrayä¸­
+//çš„JSON Objectå–å‡ºæƒ³è¦çš„è³‡æ–™ï¼Œåœ¨ç”¨loopå»æ¯”å°String(è‹¥æ˜¯Integerå‰‡è½‰æˆStringå»æ¯”å°)
 
 import java.net.*;
 import java.io.*;
@@ -9,44 +9,44 @@ import org.json.*;
 public class TocHw3 {
 
     public static void main(String[] args) throws Exception {
-        	  // declare the variables 
-		      	String url = args[0];  
-			    	String town = args[1];
-				    	String road = args[2];
-					    	Integer year = Integer.parseInt(args[3]);
-						    	String[] townJSON;  // for JSON data
-							    	String[] roadJSON;
-								    	Integer[] yearJSON;
-									    	Integer[] priceJSON;
-										    	Integer totalPrice = 0;
-											    	Integer matchNum = 0;
-												    	  // handle url and get data of JSON type
-													          URL oracle = new URL(url);
-														          BufferedReader in = new BufferedReader(new InputStreamReader(oracle.openStream(),"utf-8"));
-															          JSONArray jsondata = new JSONArray(new JSONTokener(in));
-																            // new the array
-																	            townJSON = new String[jsondata.length()];
-																		            roadJSON = new String[jsondata.length()];
-																			            yearJSON = new Integer[jsondata.length()];
-																				            priceJSON = new Integer[jsondata.length()];
-																					              // assign value to array
-																						              for(int i=0;i<jsondata.length();i++){
-																							              	townJSON[i] = jsondata.getJSONObject(i).getString("¶mÂí¥«°Ï");
-																									        	roadJSON[i] = jsondata.getJSONObject(i).getString("¤g¦a°Ï¬q¦ì¸m©Î«Øª«°ÏªùµP");
-																											        	yearJSON[i] = jsondata.getJSONObject(i).getInt("¥æ©ö¦~¤ë");
-																													        	priceJSON[i] = jsondata.getJSONObject(i).getInt("Á`»ù¤¸");
-																															        }
-																																          // compare the data
-																																	          for(int j=0;j<jsondata.length();j++){
-																																		          	if(townJSON[j].contains(town) && roadJSON[j].contains(road) && yearJSON[j].toString().substring(0,3).equals(year.toString())){
-																																				        		System.out.println(townJSON[j]+"    "+roadJSON[j]+"    "+yearJSON[j]+"    "+priceJSON[j]);
-																																							        	    totalPrice += priceJSON[j];
-																																									            	    matchNum++;
-																																											            	}	
-																																													        }
-																																														        
-																																															        System.out.println(totalPrice/matchNum);
-																																																        
-																																																	        in.close();
-																																																		    }
-																																																		    }
+    	  // declare the variables 
+    	String url = args[0];  
+    	String town = args[1];
+    	String road = args[2];
+    	Integer year = Integer.parseInt(args[3]);
+    	String[] townJSON;  // for JSON data
+    	String[] roadJSON;
+    	Integer[] yearJSON;
+    	Integer[] priceJSON;
+    	Integer totalPrice = 0;
+    	Integer matchNum = 0;
+    	  // handle url and get data of JSON type
+        URL oracle = new URL(url);
+        BufferedReader in = new BufferedReader(new InputStreamReader(oracle.openStream(),"utf-8"));
+        JSONArray jsondata = new JSONArray(new JSONTokener(in));
+          // new the array
+        townJSON = new String[jsondata.length()];
+        roadJSON = new String[jsondata.length()];
+        yearJSON = new Integer[jsondata.length()];
+        priceJSON = new Integer[jsondata.length()];
+          // assign value to array
+        for(int i=0;i<jsondata.length();i++){
+        	townJSON[i] = jsondata.getJSONObject(i).getString("é„‰é®å¸‚å€");
+        	roadJSON[i] = jsondata.getJSONObject(i).getString("åœŸåœ°å€æ®µä½ç½®æˆ–å»ºç‰©å€é–€ç‰Œ");
+        	yearJSON[i] = jsondata.getJSONObject(i).getInt("äº¤æ˜“å¹´æœˆ");
+        	priceJSON[i] = jsondata.getJSONObject(i).getInt("ç¸½åƒ¹å…ƒ");
+        }
+          // compare the data
+        for(int j=0;j<jsondata.length();j++){
+        	if(townJSON[j].contains(town) && roadJSON[j].contains(road) && yearJSON[j].toString().substring(0,3).equals(year.toString())){
+        		System.out.println(townJSON[j]+"    "+roadJSON[j]+"    "+yearJSON[j]+"    "+priceJSON[j]);
+        	    totalPrice += priceJSON[j];
+        	    matchNum++;
+        	}	
+        }
+        
+        System.out.println(totalPrice/matchNum);
+        
+        in.close();
+    }
+}
