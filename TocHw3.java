@@ -21,8 +21,8 @@ public class TocHw3 {
     	Integer totalPrice = 0;
     	Integer matchNum = 0;
     	  // handle url and get data of JSON type
-        URL url = new URL(url);
-        BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream(),"utf-8"));
+        URL urlStr = new URL(url);
+        BufferedReader in = new BufferedReader(new InputStreamReader(urlStr.openStream(),"utf-8"));
         JSONArray jsondata = new JSONArray(new JSONTokener(in));
           // new the array
         townJSON = new String[jsondata.length()];
